@@ -17,8 +17,12 @@ namespace Employee.Test.Git.Merge.Services
 
         public List<string> PeopleNames()
         {
-            //mislim da je ovde odradio""
-            return _testRepository.GetPeopleNames().Select(name => name.ToUpper()).ToList();
+              var peopleNames = _testRepository.GetPeopleNames().Select(name => name.ToUpper());
+  		  
+              //zasto 3 kada se spominje 4		             
+              List<string> noShortFirstNames = peopleNames.Where(name => name.Split(' ')[0].Length > 3).ToList();		  
+              
+              return noShortFirstNames;		              
         }
     }
 }
